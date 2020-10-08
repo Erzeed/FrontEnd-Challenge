@@ -1,0 +1,294 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Spartan',sans-serif;
+    font-size: 12px;
+    width: 100vw;
+    height: 100vh;
+
+}
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-areas: 
+        'home home shop shop'
+        'home home shop shop'
+        'img-1 about about img-2'
+        "footer footer footer footer"
+    ;
+    grid-template-columns: 1fr 1fr .5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.bar {
+    grid-area: home;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color:  hsl(0, 0%, 100%);
+}
+.bar-menu {
+    content: url(/images/icon-hamburger.svg);
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    cursor: pointer;
+    display: none;
+    z-index: 1;
+}
+.close-bar {
+    content: url(/images/icon-close.svg);
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+    display: none;
+}
+.logo {
+    font-size: 2em;
+    font-weight: 400;
+    padding-left: 50px;
+}
+
+nav ul {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    overflow: hidden;
+}
+nav ul li {
+    list-style: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding-left: 2em;
+    position: relative;
+    cursor: pointer;
+    padding-top: 3px;
+}
+nav ul li::after{
+    content: "";
+    border-bottom: 2px solid hsl(0, 0%, 100%);
+    position: absolute;
+    width: calc(100% - 2em);
+    bottom: 0;
+    transform: translateY(10px);
+    left: 2em;
+    transition: .2s;
+    
+}
+nav ul li:hover::after {
+    transform: translateY(0px);
+}
+.img-slider {
+    grid-area: home;
+    background-image: url(/images/desktop-image-hero-1.jpg);
+    z-index: -1;
+    background-size: cover;
+}
+.shop-slide {
+   grid-area: shop;
+   padding: 80px;
+   position: relative;
+}
+.shop-slide h1 {
+    font-size: 3em;
+    margin: 0;
+}
+.shop-slide p {
+    opacity: .5;
+    line-height: 1.7em;
+    padding: 15px 0;
+    font-size: 1em;
+}
+.button {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 50px;
+    cursor: pointer;
+}
+.button::after {
+    content: url(/images/icon-arrow.svg);
+    position: absolute;
+    top: calc(50% - 7px);
+    left: 150px;
+}
+.button p {
+    opacity: 1;
+    font-size: 1em;
+    color: hsl(0, 0%, 0%);
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.nav-button {
+    grid-area: shop;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 0;
+}
+.btn {
+    background-color: hsl(0, 0%, 0%);
+    width: 70px;
+    height: 60px;
+}
+.btn.left {
+    position: relative;
+    cursor: pointer;
+}
+.btn.right {
+    position: relative;
+    cursor: pointer;
+}
+.btn.left:active , 
+.btn.right:active {
+    background-color: hsl(0, 0%, 27%);
+}
+.btn.left::after {
+    content: url(/images/icon-angle-left.svg);
+    position: absolute;
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+}
+.btn.right::before {
+    content: url(/images/icon-angle-right.svg);
+    position: absolute;
+    top: calc(50% - 10px);
+    right: calc(50% - 10px);
+}
+.banner-1 {
+    display: none;
+}
+.banner-2 {
+    display: none;
+}
+.banner-3 {
+    display: none;
+}
+.active {
+    display: inline;
+}
+.inactive {
+    display: none;
+}
+.img-1{
+    grid-area: img-1;
+    background-image: url(/images/image-about-dark.jpg);
+}
+.img-2{
+    grid-area: img-2;
+    background-image: url(/images/image-about-light.jpg);
+}
+.about {
+    grid-area: about;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.about h1 {
+    font-size: 1em;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    
+}
+.about p {
+    opacity: .5;
+    line-height: 1.7em;
+    text-align: justify;
+    font-size: 1em;
+}
+.attribution { 
+    grid-area: footer;
+    font-size: 11px; 
+    text-align: center;
+    margin: 10px;
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+/* responsive */
+@media (max-width: 375px) {
+   .container { 
+    grid-template-areas: 
+        'home '
+        'shop'
+        'img-1'
+        'about'
+        'img-2'
+        'footer'
+    ;
+    grid-template-columns: 375px;
+    grid-template-rows: repeat(autofit,minmax(360px,1fr));
+   }
+    .logo {
+        position: absolute;
+        font-size: 2.1em;
+        top: 12px;
+        padding-left: calc(50% - 25px);
+    }
+    .bar {
+        position: relative;
+        min-height: 360px;
+    }
+    .bar-menu {
+        display: flex;
+    }
+    nav ul  {
+        position: absolute;
+        top: -15px;
+        left: 0;
+        color: black;
+        height: 100px;
+        width: 100%;
+        background-color: #fff;
+        display: none;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    nav ul li {
+        font-weight: bold;
+    }
+
+   .img-slider {
+    grid-area: home;
+    background-image: url(/images/mobile-image-hero-1.jpg);
+    z-index: -1;
+    background-repeat: no-repeat;
+   }
+    .shop-slide {
+        font-size: .8em;
+        z-index: 2;
+    }
+    .shop-slide p {
+        font-size: 1.2em;
+    }
+    .shop-slide {
+    padding: 50px 30px;
+    
+    }
+    .nav-button {
+        grid-area: home;
+        top: -50px;
+        left: 255px;
+        height: 50px;
+    }
+    .btn {
+        height: 50px;
+        width: 60px;
+    }
+    .img-1,
+    .img-2 {
+        height: 266px;
+        width: 375px;
+        background-repeat: no-repeat;
+    }
+    .close-bar {
+        display: flex;
+    }
+
+}
